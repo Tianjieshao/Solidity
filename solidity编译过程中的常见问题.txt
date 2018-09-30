@@ -1,0 +1,96 @@
+1、报错：
+
+Expected token Semicolon got 'eth_compileSolidity' funtion setFunder(uint _u,uint _amount){
+
+解决：
+
+funtion关键字错了，需要用function；
+
+ 
+
+2、报错：
+
+Variable is declared as a storage pointer. Use an explicit "storage" keyword to silence this warning. Funder f = funders[_u]; ^------^
+
+解决：
+
+Funder f，定义指针需要加关键字storage ；修改为Funder storage f = funders[_u];
+
+ 
+
+3、报错：
+
+Invoking events without "emit" prefix is deprecated. e("newFunder",_add,_amount); ^-------------------------^
+
+解决：
+
+调用事件需要在前面加上emit关键字，修改为emit e("newFunder",_add,_amount);
+
+ 
+
+4、报错：
+
+No visibility specified. Defaulting to "public". function newFunder(address _add,uint _amount) returns (uint){ ^ (Relevant source part starts here and spans across multiple lines).
+
+解决：
+
+定义函数必须加上public关键字，修改为function newFunder(address _add,uint _amount) public returns (uint){
+
+ 
+
+5、报错：
+
+"msg.gas" has been deprecated in favor of "gasleft()" uint public _gas = msg.gas; ^-----^
+
+ 
+
+解决：msg.gas已经被gasleft()替换了。修改为uint public _gas = gasleft();
+
+6、报错：
+
+"throw" is deprecated in favour of "revert()", "require()" and "assert()". throw ;
+
+解决：solidity已经不支持thorw了，需要使用require，用法require()
+
+throw 写法：
+
+if(msg.sender !=chairperson ||voters[_voter].voted ){
+
+throw ;
+
+}
+
+require写法：
+
+require(msg.sender !=chairperson ||voters[_voter].voted);
+
+ 
+
+7、报错：
+
+This declaration shadows an existing declaration. Voter delegate = voters[to]; ^------------^
+
+解决：变量重复定义，变量名和函数名不能相同。
+
+ 
+
+8、报错：
+
+error: Function state mutability can be restricted to pure
+
+解决：以前版本是可以不指定类型internal pure(外部不可调用)，public pure(外部可调用)(如不指定表示函数为可变行，需要限制)
+
+
+
+ 
+
+9、报错：
+
+"sha3" has been deprecated in favour of "keccak256"
+
+
+解决：sha3已经替换为keccak256
+
+---------------------
+
+本文来自 haojing8312 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/haojing8312/article/details/80606226?utm_source=copy 
