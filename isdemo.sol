@@ -1,3 +1,4 @@
+//子类继承父类
 pragma solidity ^0.4.0;
 contract F{
     uint internal u = 10;
